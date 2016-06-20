@@ -1,0 +1,19 @@
+h1 Add a new Post
+- if @post.errors.any?
+	h2 Errors:
+	ul
+		- @post.errors.full_messages.each do |message| 
+			li
+				= message 
+	
+= form_for @post do |f| 
+	p
+		= f.label :title 
+	= f.text_field :title 
+	p
+		= f.label :content 
+	= f.text_area :content
+	p
+		= f.submit "Add a New Post" 
+
+

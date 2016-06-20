@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title= t('title')
+    = csrf_meta_tags
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = cloudinary_js_config
+  body
+    main.container
+      .p2= yield
+
+  
