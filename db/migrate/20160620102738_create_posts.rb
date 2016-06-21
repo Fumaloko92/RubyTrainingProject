@@ -3,8 +3,9 @@ class CreatePosts < ActiveRecord::Migration[5.0]
     create_table :posts do |t|
       t.string :title
       t.text :content
-
+      
       t.timestamps 
     end
+    add_reference :posts, :user, polimorphic: true, index: true, :null => false
   end
 end
