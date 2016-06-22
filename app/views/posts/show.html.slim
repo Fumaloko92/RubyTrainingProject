@@ -1,6 +1,31 @@
 h1
-	= @post.title 
+  = @post.title 
 p
-	= @post.content 
+  = @post.content 
 small
-	= @post.created_at 
+  = @post.created_at 
+
+h2 Comments
+
+- @post.comments.each do |comment|
+  = "Commented on " + comment.created_at.to_s
+  br
+  h5
+    = comment.title
+  h5
+    = comment.content   
+  br
+  br
+
+- if current_user
+  h3 Add a comment
+  = form_for @comment, url: post_comments_path(@post.id) do |f|
+    = f.hidden_field :post_id, :value => @post.id
+    p
+      = f.label :title
+    = f.text_field :title
+    p
+      = f.label :content
+    = f.text_area :content
+    br
+    = f.submit "Add a New Comment" 

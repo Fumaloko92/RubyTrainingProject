@@ -5,6 +5,8 @@ class PostsController < ApplicationController
   
   def show
     @post = Post.find(params[:id])
+    @comments = Comment.find_by(post_id: params[:id])
+    @comment = Comment.new()
   end
   
   def new
@@ -22,7 +24,11 @@ class PostsController < ApplicationController
   end
   
   def edit
+    
     @post = Post.find(params[:id])  
+    if !current_user || (current_user && current_user.id != @post.user_id)
+      render "forbidden"
+    end
   end
   
   def update
@@ -49,4 +55,5 @@ class PostsController < ApplicationController
       :content,
       :user_id)
   end
+  
 end

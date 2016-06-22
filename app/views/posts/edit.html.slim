@@ -1,20 +1,17 @@
--if current_user and current_user == @post.user_id
-	h1	Edit Post
-	- if @post.errors.any? 
-		h2	Errors:
-		ul
-			- @post.errors.full_messages.each do |message| 
-				li
-					= message 		
+  h1  Edit Post
+  - if @post.errors.any? 
+    h2 Errors:
+      ul
+        - @post.errors.full_messages.each do |message| 
+          li
+            = message 		
 
-	= form_for @post do |f| 
-		p	
-			= f.label :title 
-		= f.text_field :title 
-		p	
-			= f.label :content 
-		= f.text_area :content
-		br
-		= f.submit "Update Post" 
-- else
-	h1 Forbidden
+  = form_for @post do |f| 
+    p	
+      = f.label :title 
+    = f.text_field :title 
+    p	
+      = f.label :content 
+    = f.text_area :content
+    br
+    = f.submit "Update Post" 

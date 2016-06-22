@@ -6,6 +6,6 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       
       t.timestamps 
     end
-    add_reference :posts, :user, polimorphic: true, index: true, :null => false
+    add_reference :posts, :user, index: true, :null => false
   end
 end

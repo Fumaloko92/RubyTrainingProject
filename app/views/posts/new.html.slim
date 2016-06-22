@@ -1,20 +1,20 @@
 h1 Add a new Post
 - if @post.errors.any?
-	h2 Errors:
-	ul
-		- @post.errors.full_messages.each do |message| 
-			li
-				= message 
+  h2 Errors:
+  ul
+    - @post.errors.full_messages.each do |message| 
+      li
+        = message 
 	
 = form_for @post do |f| 
-	= f.hidden_field :user_id, :value => current_user.id 
-	p
-		= f.label :title 
-	= f.text_field :title 
-	p
-		= f.label :content 
-	= f.text_area :content
-	p
-		= f.submit "Add a New Post" 
+  = f.hidden_field :user_id, :value => current_user.id 
+  p
+    = f.label :title 
+  = f.text_field :title 
+  p
+    = f.label :content 
+  = f.text_area :content
+  p
+  = f.submit "Add a New Post" 
 
 
