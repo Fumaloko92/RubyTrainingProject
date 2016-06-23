@@ -7,7 +7,6 @@ h1 Add a new Post
         = message 
 	
 = form_for @post do |f| 
-  = f.hidden_field :user_id, :value => current_user.id 
   p
     = f.label :title 
   = f.text_field :title 

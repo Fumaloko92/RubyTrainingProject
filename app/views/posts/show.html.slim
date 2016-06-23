@@ -7,7 +7,7 @@ small
 
 h2 Comments
 
-- @post.comments.each do |comment|
+- @comments.each do |comment|
   = "Commented on " + comment.created_at.to_s
   br
   h5
@@ -19,7 +19,7 @@ h2 Comments
 
 - if current_user
   h3 Add a comment
-  = form_for @comment, url: post_comments_path(@post.id) do |f|
+  = form_for [@post, @comment] do |f|
     = f.hidden_field :post_id, :value => @post.id
     p
       = f.label :title
@@ -29,3 +29,5 @@ h2 Comments
     = f.text_area :content
     br
     = f.submit "Add a New Comment" 
+- else
+  = link_to ("Login to comment"), new_user_session_path

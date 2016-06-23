@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, :only => :edit
+  
   def index
     @posts = Post.all
   end
   
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.find_by(post_id: params[:id])
+    @comments = @post.comments
     @comment = Comment.new()
   end
   
@@ -15,7 +17,7 @@ class PostsController < ApplicationController
   
   def create
     @post = Post.new(user_params)
-    
+    @post.user_id = current_user.id
     if @post.save
       redirect_to posts_path, :notice => "Your post was saved"
     else
@@ -24,10 +26,9 @@ class PostsController < ApplicationController
   end
   
   def edit
-    
     @post = Post.find(params[:id])  
-    if !current_user || (current_user && current_user.id != @post.user_id)
-      render "forbidden"
+    if current_user.id != @post.user_id
+      redirect_to new_user_session_path
     end
   end
   
@@ -52,8 +53,8 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :id,
       :title, 
-      :content,
-      :user_id)
+      :content
+      )
   end
   
 end

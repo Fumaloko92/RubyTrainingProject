@@ -11,8 +11,8 @@ html
     br
     - if !current_user
    	  = link_to t('.nav.register'), new_user_registration_path, class: 'btn'
-   	    = " | "
-   	    = link_to t('.nav.log_in'), new_user_session_path, class: 'btn'
+   	  = " | "
+   	  = link_to t('.nav.log_in'), new_user_session_path, class: 'btn'
     - else
    	  = link_to t('.nav.sign_out'), destroy_user_session_path, class: 'btn'
     main.container
