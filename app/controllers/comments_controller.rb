@@ -21,16 +21,20 @@ class CommentsController < ApplicationController
   
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to :back, :notice => "Your post has been deleted"
+    if current_user == @comment.user || current_user == @comment.post.user
+      @comment.destroy
+      redirect_to :back, :notice => "Your post has been deleted"
+    end
   end
   
   def update
     @comment = Comment.find(params[:id])
-    if @comment.update_attributes(user_params)
-      redirect_to :back, :notice => "Your comment was updated"
-    else
-      render "edit"
+    if @comment.user == current_user
+      if @comment.update_attributes(user_params)
+        redirect_to :back, :notice => "Your comment was updated"
+      else
+        render "edit"
+      end
     end
   end
   private
