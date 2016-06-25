@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     @comment = Comment.new(user_params)
     @comment.user_id = current_user.id
@@ -10,6 +12,27 @@ class CommentsController < ApplicationController
     end
   end
   
+  def edit
+    @comment = Comment.find(params[:id])
+    if @comment.user.id != current_user.id
+      redirect_to :back, :notice => "Unauthorized"
+    end
+  end
+  
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to :back, :notice => "Your post has been deleted"
+  end
+  
+  def update
+    @comment = Comment.find(params[:id])
+    if @comment.update_attributes(user_params)
+      redirect_to :back, :notice => "Your comment was updated"
+    else
+      render "edit"
+    end
+  end
   private
 
   def user_params

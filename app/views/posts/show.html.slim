@@ -14,13 +14,21 @@ h2 Comments
     = comment.title
   h5
     = comment.content   
+  - if current_user && comment.user.id == current_user.id
+    = form_for [@post, comment] do |f|
+      = f.text_field :title 
+      br
+      = f.text_area :content
+      br
+      = f.submit "Edit comment"
   br
+  - if current_user && (comment.user.id == current_user.id || @post.user.id == current_user.id)
+    = link_to ("Delete"), [@post,comment], :data => {:confirm => "Are you sure?"}, :method => :delete 
   br
 
 - if current_user
   h3 Add a comment
   = form_for [@post, @comment] do |f|
-    = f.hidden_field :post_id, :value => @post.id
     p
       = f.label :title
     = f.text_field :title
