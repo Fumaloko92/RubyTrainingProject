@@ -24,6 +24,8 @@ class CommentsController < ApplicationController
     if current_user == @comment.user || current_user == @comment.post.user
       @comment.destroy
       redirect_to :back, :notice => "Your post has been deleted"
+    else
+      redirect_to new_user_session_path
     end
   end
   
@@ -35,6 +37,8 @@ class CommentsController < ApplicationController
       else
         render "edit"
       end
+    else
+      redirect_to new_user_session_path
     end
   end
   private
