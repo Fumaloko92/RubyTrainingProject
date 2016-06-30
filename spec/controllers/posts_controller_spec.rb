@@ -194,40 +194,6 @@ describe PostsController do
     end
   end
   
-  describe "PUT #update" do
-    def do_put_update(post_params)
-      put :update, :params =>{
-        :id => post.id,
-        :post => post_params
-      }
-    end
-    
-    let!(:post) { FactoryGirl.create(:post) }
-    
-    describe "user" do
-      before (:each) do
-        login_with(FactoryGirl.create(:user))
-      end
-      
-      it "modifies the post" do
-        expect(do_put_update(:title => "Edited title", :content => "Edited content")).to be
-      end
-      
-      it "redirects to :index" do
-        expect(do_put_update(:title => "Edited title", :content => "Edited content")).to redirect_to posts_path
-      end
-    end
-    
-    describe "guest" do
-      it "redirects to log_in no matters the parameters" do
-        expect(do_put_update(:title => "Edited title", :content => "Edited content")).to redirect_to new_user_session_path
-        expect(do_put_update(:title => "", :content => "Edited content")).to redirect_to new_user_session_path
-        expect(do_put_update(:title => "Edited title", :content => "")).to redirect_to new_user_session_path
-        expect(do_put_update(:title => "", :content => "")).to redirect_to new_user_session_path
-      end
-    end
-  end
-  
   describe "PATCH #update" do
     def do_patch_update(post_params)
       patch :update, :params =>{

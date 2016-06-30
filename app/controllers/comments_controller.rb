@@ -12,13 +12,6 @@ class CommentsController < ApplicationController
     end
   end
   
-  def edit
-    @comment = Comment.find(params[:id])
-    if @comment.user.id != current_user.id
-      redirect_to :back, :notice => "Unauthorized"
-    end
-  end
-  
   def destroy
     @comment = Comment.find(params[:id])
     if current_user == @comment.user || current_user == @comment.post.user
