@@ -3,7 +3,7 @@ require "rails_helper"
 describe CommentsController do
   describe "POST #create" do
     def do_post_create(comment_params)
-      post :create,{
+      post :create, {
       :post_id => post_.id,
       :comment => comment_params
       }
@@ -18,18 +18,17 @@ describe CommentsController do
       end
       
       it "add a new comment" do
-        expect{ do_post_create(:title => "Comment title", :content => "Comment content") }.to change(Comment,:count).by 1
-        expect(do_post_create(:title => "Comment title", :content => "Comment content")).to redirect_to "back_"
+        expect{ do_post_create(FactoryGirl.attributes_for(:comment)) }.to change(Comment,:count).by 1
       end
       
       it "redirect to back" do
-        expect(do_post_create(:title => "Comment title", :content => "Comment content")).to redirect_to "back_"
+        expect(do_post_create(FactoryGirl.attributes_for(:comment))).to redirect_to "back_"
       end
     end
     
     describe "guest" do
       it "redirect to log_in page" do
-        expect(do_post_create(:title => "Comment title", :content => "Comment content")).to redirect_to new_user_session_path
+        expect(do_post_create(FactoryGirl.attributes_for(:comment))).to redirect_to new_user_session_path
         expect(do_post_create(:title => "", :content => "Comment content")).to redirect_to new_user_session_path
         expect(do_post_create(:title => "Comment title", :content => "")).to redirect_to new_user_session_path
         expect(do_post_create(:title => "", :content => "")).to redirect_to new_user_session_path
@@ -55,14 +54,14 @@ describe CommentsController do
       
       it "modify the comment and redirect to back" do
         request.env["HTTP_REFERER"] = "back_"
-        expect(do_patch_update(:title => "Title modified", :content => "Content modified")).to be
-        expect(do_patch_update(:title => "Title modified", :content => "Content modified")).to redirect_to "back_"
+        expect(do_patch_update(FactoryGirl.attributes_for(:comment))).to be
+        expect(do_patch_update(FactoryGirl.attributes_for(:comment))).to redirect_to "back_"
       end
     end
     
     describe "guest" do
       it "redirect to log_in no matter the parameters" do
-        expect(do_patch_update(:title => "Title modified", :content => "Content modified")).to redirect_to new_user_session_path
+        expect(do_patch_update(FactoryGirl.attributes_for(:comment))).to redirect_to new_user_session_path
         expect(do_patch_update(:title => "", :content => "Content modified")).to redirect_to new_user_session_path
         expect(do_patch_update(:title => "Title modified", :content => "")).to redirect_to new_user_session_path
         expect(do_patch_update(:title => "", :content => "")).to redirect_to new_user_session_path
