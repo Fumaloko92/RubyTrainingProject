@@ -56,31 +56,31 @@ describe PostsController do
       end
       
       it "renders the :post_new template if the parameters are not valid" do
-        expect(do_post(:title => "",:content => "Test content")).to render_template("posts/new")
-        expect(do_post(:title => "Test title",:content => "")).to render_template("posts/new")
-        expect(do_post(:title => "",:content => "")).to render_template("posts/new")
+        expect(do_post(FactoryGirl.attributes_for(:post, title: ""))).to render_template("posts/new")
+        expect(do_post(FactoryGirl.attributes_for(:post, content: ""))).to render_template("posts/new")
+        expect(do_post(FactoryGirl.attributes_for(:post, title: "", content: ""))).to render_template("posts/new")
       end
       
       it "does not create another post if the parameters are not valid" do
-        expect{do_post(:title => "",:content => "Test content")}.to_not change(Post, :count)
-        expect{do_post(:title => "Test title",:content => "")}.to_not change(Post, :count)
-        expect{do_post(:title => "",:content => "")}.to_not change(Post, :count)
+        expect{do_post(FactoryGirl.attributes_for(:post, title: ""))}.to_not change(Post, :count)
+        expect{do_post(FactoryGirl.attributes_for(:post, content: ""))}.to_not change(Post, :count)
+        expect{do_post(FactoryGirl.attributes_for(:post, title: "", content: ""))}.to_not change(Post, :count)
       end
     end
     
     describe "guest" do
       it "renders :log_in template no matters the validity of the parameters" do
         expect(do_post(FactoryGirl.attributes_for(:post))).to redirect_to(new_user_session_path)
-        expect(do_post(:title => "",:content => "Test content")).to redirect_to(new_user_session_path)
-        expect(do_post(:title => "Test title",:content => "")).to redirect_to(new_user_session_path)
-        expect(do_post(:title => "",:content => "")).to redirect_to(new_user_session_path)
+        expect(do_post(FactoryGirl.attributes_for(:post, title: ""))).to redirect_to(new_user_session_path)
+        expect(do_post(FactoryGirl.attributes_for(:post, content: ""))).to redirect_to(new_user_session_path)
+        expect(do_post(FactoryGirl.attributes_for(:post, title: "", content: ""))).to redirect_to(new_user_session_path)
       end
       
       it "should not be able to create a new post no matters the validity of the parameters" do
          expect{do_post(FactoryGirl.attributes_for(:post))}.to_not change(Post, :count)
-         expect{do_post(:title => "",:content => "Test content")}.to_not change(Post, :count)
-         expect{do_post(:title => "Test title",:content => "")}.to_not change(Post, :count)
-         expect{do_post(:title => "",:content => "")}.to_not change(Post, :count)
+         expect{do_post(FactoryGirl.attributes_for(:post, title: ""))}.to_not change(Post, :count)
+         expect{do_post(FactoryGirl.attributes_for(:post, content: ""))}.to_not change(Post, :count)
+         expect{do_post(FactoryGirl.attributes_for(:post, title: "", content: ""))}.to_not change(Post, :count)
       end
     end
   end
@@ -97,39 +97,39 @@ describe PostsController do
         login_with(FactoryGirl.create(:user))
       end
       it "renders :posts template if the parameters are valid" do
-        expect(do_patch(:title => "Test title",:content => "Test content")).to redirect_to(posts_path)
+        expect(do_patch(FactoryGirl.attributes_for(:post))).to redirect_to(posts_path)
       end
       
       it "creates and saves another post if the parameters are valid" do
-        expect { do_patch(:title => "Test title",:content => "Test content") }.to change(Post, :count).by 1
+        expect { do_patch(FactoryGirl.attributes_for(:post)) }.to change(Post, :count).by 1
       end
       
       it "renders the :post_new template if the parameters are not valid" do
-        expect(do_patch(:title => "",:content => "Test content")).to render_template("posts/new")
-        expect(do_patch(:title => "Test title",:content => "")).to render_template("posts/new")
-        expect(do_patch(:title => "",:content => "")).to render_template("posts/new")
+        expect(do_patch(FactoryGirl.attributes_for(:post, title: ""))).to render_template("posts/new")
+        expect(do_patch(FactoryGirl.attributes_for(:post, content: ""))).to render_template("posts/new")
+        expect(do_patch(FactoryGirl.attributes_for(:post, title: "", content: ""))).to render_template("posts/new")
       end
       
       it "does not create another post if the parameters are not valid" do
-        expect{ do_patch(:title => "",:content => "Test content") }.to_not change(Post, :count)
-        expect{ do_patch(:title => "Test title",:content => "") }.to_not change(Post, :count)
-        expect{ do_patch(:title => "",:content => "")} .to_not change(Post, :count)
+        expect{ do_patch(FactoryGirl.attributes_for(:post, title: "")) }.to_not change(Post, :count)
+        expect{ do_patch(FactoryGirl.attributes_for(:post, content: "")) }.to_not change(Post, :count)
+        expect{ do_patch(FactoryGirl.attributes_for(:post, title: "", content: ""))} .to_not change(Post, :count)
       end
     end
     
     describe "guest" do
       it "renders :log_in template no matters the validity of the parameters" do
-        expect(do_patch(:title => "Test title",:content => "Test content")).to redirect_to(new_user_session_path)
-        expect(do_patch(:title => "",:content => "Test content")).to redirect_to(new_user_session_path)
-        expect(do_patch(:title => "Test title",:content => "")).to redirect_to(new_user_session_path)
-        expect(do_patch(:title => "",:content => "")).to redirect_to(new_user_session_path)
+        expect(do_patch(FactoryGirl.attributes_for(:post))).to redirect_to(new_user_session_path)
+        expect(do_patch(FactoryGirl.attributes_for(:post, title: ""))).to redirect_to(new_user_session_path)
+        expect(do_patch(FactoryGirl.attributes_for(:post, content: ""))).to redirect_to(new_user_session_path)
+        expect(do_patch(FactoryGirl.attributes_for(:post, title: "", content: ""))).to redirect_to(new_user_session_path)
       end
       
       it "should not be able to create a new post no matters the validity of the parameters" do
          expect{ do_patch(FactoryGirl.attributes_for(:post)) }.to_not change(Post, :count)
-         expect{ do_patch(:title => "",:content => "Test content") }.to_not change(Post, :count)
-         expect{ do_patch(:title => "Test title",:content => "") }.to_not change(Post, :count)
-         expect{ do_patch(:title => "",:content => "") }.to_not change(Post, :count)
+         expect{ do_patch(FactoryGirl.attributes_for(:post, title: "")) }.to_not change(Post, :count)
+         expect{ do_patch(FactoryGirl.attributes_for(:post, content: "")) }.to_not change(Post, :count)
+         expect{ do_patch(FactoryGirl.attributes_for(:post, title: "", content: "")) }.to_not change(Post, :count)
       end
     end
   end
@@ -221,9 +221,9 @@ describe PostsController do
     describe "guest" do
       it "redirects to log_in no matters the parameters" do
         expect(do_patch_update(FactoryGirl.attributes_for(:post))).to redirect_to new_user_session_path
-        expect(do_patch_update(:title => "", :content => "Edited content")).to redirect_to new_user_session_path
-        expect(do_patch_update(:title => "Edited title", :content => "")).to redirect_to new_user_session_path
-        expect(do_patch_update(:title => "", :content => "")).to redirect_to new_user_session_path
+        expect(do_patch_update(FactoryGirl.attributes_for(:post, title: ""))).to redirect_to new_user_session_path
+        expect(do_patch_update(FactoryGirl.attributes_for(:post, content: ""))).to redirect_to new_user_session_path
+        expect(do_patch_update(FactoryGirl.attributes_for(:post, title: "", content: ""))).to redirect_to new_user_session_path
       end
     end
   end

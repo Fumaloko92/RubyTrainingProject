@@ -29,9 +29,9 @@ describe CommentsController do
     describe "guest" do
       it "redirect to log_in page" do
         expect(do_post_create(FactoryGirl.attributes_for(:comment))).to redirect_to new_user_session_path
-        expect(do_post_create(:title => "", :content => "Comment content")).to redirect_to new_user_session_path
-        expect(do_post_create(:title => "Comment title", :content => "")).to redirect_to new_user_session_path
-        expect(do_post_create(:title => "", :content => "")).to redirect_to new_user_session_path
+        expect(do_post_create(FactoryGirl.attributes_for(:comment, title: ""))).to redirect_to new_user_session_path
+        expect(do_post_create(FactoryGirl.attributes_for(:comment, content: ""))).to redirect_to new_user_session_path
+        expect(do_post_create(FactoryGirl.attributes_for(:comment, content: "", title: ""))).to redirect_to new_user_session_path
       end
     end
   end
@@ -62,9 +62,9 @@ describe CommentsController do
     describe "guest" do
       it "redirect to log_in no matter the parameters" do
         expect(do_patch_update(FactoryGirl.attributes_for(:comment))).to redirect_to new_user_session_path
-        expect(do_patch_update(:title => "", :content => "Content modified")).to redirect_to new_user_session_path
-        expect(do_patch_update(:title => "Title modified", :content => "")).to redirect_to new_user_session_path
-        expect(do_patch_update(:title => "", :content => "")).to redirect_to new_user_session_path
+        expect(do_patch_update(FactoryGirl.attributes_for(:comment, title: ""))).to redirect_to new_user_session_path
+        expect(do_patch_update(FactoryGirl.attributes_for(:comment, content: ""))).to redirect_to new_user_session_path
+        expect(do_patch_update(FactoryGirl.attributes_for(:comment, title: "", content: ""))).to redirect_to new_user_session_path
       end
     end
   end

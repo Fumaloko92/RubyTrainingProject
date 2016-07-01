@@ -1,21 +1,47 @@
 doctype html
 html
   head
-    title= t('title')
+    title= "Luca\'s Blog"
     = csrf_meta_tags
-
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    
+    = javascript_include_tag 'application', 'jquery.min', 'easing', 'move-top', 'data-turbolinks-track': 'reload' 
+    = stylesheet_link_tag    'application', 'style', 'bootstrap', media: 'all', 'data-turbolinks-track': 'reload'
+    script type="application/x-javascript" addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+    script type="text/javascript" jQuery(document).ready(function($) {$(".scroll").click(function(event){event.preventDefault();$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);});});
   body
-    = link_to t('.nav.homepage'), root_path, class: 'btn'
-    br
-    - if !current_user
-   	  = link_to t('.nav.register'), new_user_registration_path, class: 'btn'
-   	  = " | "
-   	  = link_to t('.nav.log_in'), new_user_session_path, class: 'btn'
-    - else
-   	  = link_to t('.nav.sign_out'), destroy_user_session_path, class: 'btn'
-    main.container
+    div class="header-top"
+      div class="container"
+        div class="head-main"
+          = link_to posts_path
+            = image_tag "logo.jpg"         				
+    div class="header"
+      div class="container"
+        div class="head"
+          div class="navigation"
+            span class="menu"
+            ul class="navig"
+              li
+                = link_to "Homepage", posts_path
+              - if !current_user
+                li
+                  = link_to "Register", new_user_registration_path
+                li
+                  = link_to "Log In", new_user_session_path
+              - else
+                li
+                  = link_to "Log Out", destroy_user_session_path
+          div class="header-right"         
+    div class="container"
       .p2= yield
+    
+    br
+    br
+    div class="footer"
+      div class="container"
+        div class="footer-text"
+          p 
+            | © 2015 Coffee Break. All Rights Reserved | Design by 
+            = link_to "W3layouts", "http://w3layouts.com/" 
+      
 
   
