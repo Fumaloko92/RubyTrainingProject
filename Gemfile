@@ -20,7 +20,7 @@ gem 'warden'
 gem "devise"
 gem "pundit"
 gem "omniauth-facebook"
-
+gem 'sprockets', '~> 3.0'
 gem 'capybara'
 gem "cloudinary"
 gem "rest-client", "~> 1.8.0"

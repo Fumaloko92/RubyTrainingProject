@@ -14,13 +14,8 @@ Rails.application.config.assets.precompile+= %w( move-top.js )
 Rails.application.config.assets.precompile+= %w( easing.js )
 Rails.application.config.assets.precompile+= %w( jquery.min.js )
  
-Rails.application.config.assets.precompile += %w( RobotoSlab-Regular.ttf )
-Rails.application.config.assets.precompile += %w( Raleway-Regular.ttf )
-Rails.application.config.assets.precompile += %w( glyphicons-halflings-regular.woff2 )
-Rails.application.config.assets.precompile += %w( glyphicons-halflings-regular.woff )
-Rails.application.config.assets.precompile += %w( glyphicons-halflings-regular.ttf )
-Rails.application.config.assets.precompile += %w( glyphicons-halflings-regular.svg )
-Rails.application.config.assets.precompile += %w( glyphicons-halflings-regular.eot )
+Rails.application.config.assets.precompile += ['*.{ttf,woff,woff2,otf,svg,eot}']
+Rails.application.config.assets.precompile += ['*.{jpg,png}']
 
 Rails.application.config.assets.precompile += %w( bootstrap.css )
 Rails.application.config.assets.precompile += %w( style.css )

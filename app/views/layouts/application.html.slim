@@ -4,8 +4,8 @@ html
     title= "Luca\'s Blog"
     = csrf_meta_tags
     
-    = javascript_include_tag 'application', 'jquery.min', 'easing', 'move-top', 'data-turbolinks-track': 'reload' 
-    = stylesheet_link_tag    'application', 'style', 'bootstrap', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload' 
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     script type="application/x-javascript" addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
     script type="text/javascript" jQuery(document).ready(function($) {$(".scroll").click(function(event){event.preventDefault();$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);});});
   body
@@ -40,7 +40,7 @@ html
       div class="container"
         div class="footer-text"
           p 
-            | © 2015 Coffee Break. All Rights Reserved | Design by 
+            | © 2016 Salfi Luca. All Rights Reserved | Design by 
             = link_to "W3layouts", "http://w3layouts.com/" 
       
 
