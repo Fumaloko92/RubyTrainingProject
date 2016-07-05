@@ -1,0 +1,38 @@
+h2 Edit profile
+
+h3 Edit personal information
+
+= form_for current_user, :url => { :action => "update_profile", :controller => "users" }, method: "patch" do |f| 
+  = f.label :name 
+  = f.text_field :name, required: true, value: current_user.name
+  br
+  = f.label :surname
+  = f.text_field :surname, required: true, value: current_user.surname
+  br
+  = f.label :birthday
+  = f.date_field :birthday, required: true
+  br
+  = f.submit "Submit new information"
+  
+h3 Edit password
+= form_for current_user, :url => { :action => "update_password", :controller => "users" }, method: "patch" do |f| 
+  = f.label :current_password
+  = f.password_field :current_password, required: true
+  br
+  = f.label :new_password
+  = f.password_field :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) 
+  br
+  = f.label :confirm_new_password
+  = f.password_field :password_confirmation, required: true 
+  br
+  = f.submit "Change password" 
+  
+h3 Edit email
+= form_for current_user, :url => { :action => "update_email", :controller => "users" }, method: "patch" do |f|
+  = f.label :password
+  = f.password_field :password, required: true
+  br
+  = f.label :email
+  = f.text_field :email, required: true, value: current_user.email
+  br
+  = f.submit "Change email"
