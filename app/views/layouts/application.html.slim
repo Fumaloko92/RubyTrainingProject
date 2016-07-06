@@ -32,7 +32,16 @@ html
                   = link_to "Edit profile", edit_user_registration_path
                 li
                   = link_to "Log Out", destroy_user_session_path
-          div class="header-right"         
+          -if current_user
+            div class="header-right"  
+              ul
+                li Logged in as:
+                li
+                  = current_user.name if current_user.name 
+                  = " " 
+                  = current_user.surname if current_user.surname
+                li
+                  = current_user.email       
     div class="container"
       .p2= yield
     

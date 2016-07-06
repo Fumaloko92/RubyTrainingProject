@@ -1,25 +1,18 @@
 class UsersController < ApplicationController
-
   before_action :authenticate_user!
-
-  def edit
-    @user = current_user
-  end
-
+  
   def update_password
     @user = current_user
-    if @user.password == params[:current_password]
-      if @user.update(password_change_params)
-        # Sign in the user by passing validation in case their password changed
-        sign_in @user, :bypass => true
-        redirect_to root_path
-      else
-        redirect_to edit_user_registration_path
-      end
+    if @user.update_with_password(password_change_params)
+      # Sign in the user by passing validation in case their password changed
+      sign_in @user, :bypass => true
+      redirect_to root_path
+    else
+      redirect_to edit_user_registration_path
     end
   end
 
-  def update_profile
+  def update_info
     @user = current_user
     if @user.update_without_password(profile_change_params)
         redirect_to root_path
@@ -30,7 +23,7 @@ class UsersController < ApplicationController
 
   def update_email
     @user = current_user
-    if @user.update(email_change_params)
+    if @user.update_with_password(email_change_params)
       sign_in @user, :bypass => true
       redirect_to root_path
     else
@@ -43,6 +36,7 @@ class UsersController < ApplicationController
   def password_change_params
     # NOTE: Using `strong_parameters` gem
     params.require(:user).permit(
+    :current_password,
     :password, 
     :password_confirmation
     )
@@ -58,7 +52,7 @@ class UsersController < ApplicationController
   
   def email_change_params
     params.require(:user).permit(
-    :password, 
+    :current_password,
     :email
     )
   end

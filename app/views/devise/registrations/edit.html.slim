@@ -2,12 +2,12 @@ h2 Edit profile
 
 h3 Edit personal information
 
-= form_for current_user, :url => { :action => "update_profile", :controller => "users" }, method: "patch" do |f| 
+= form_for current_user, :url => { :action => "update_info", :controller => "users" }, method: "patch" do |f| 
   = f.label :name 
-  = f.text_field :name, required: true, value: current_user.name
+  = f.text_field :name, required: true
   br
   = f.label :surname
-  = f.text_field :surname, required: true, value: current_user.surname
+  = f.text_field :surname, required: true
   br
   = f.label :birthday
   = f.date_field :birthday, required: true
@@ -30,7 +30,7 @@ h3 Edit password
 h3 Edit email
 = form_for current_user, :url => { :action => "update_email", :controller => "users" }, method: "patch" do |f|
   = f.label :password
-  = f.password_field :password, required: true
+  = f.password_field :current_password, required: true
   br
   = f.label :email
   = f.text_field :email, required: true, value: current_user.email

@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     resources :comments
   end
   
-  resource :user, only: [:edit, :new] do
+  resource :user, only: [:edit] do
   collection do
     patch 'update_password'
-    patch 'update_profile'
+    patch 'update_info'
     patch 'update_email'
   end
   end
