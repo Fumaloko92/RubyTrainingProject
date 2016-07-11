@@ -7,12 +7,16 @@ Rails.application.routes.draw do
     resources :comments
   end
   
-  resource :user, only: [:edit] do
-  collection do
-    patch 'update_password'
-    patch 'update_info'
-    patch 'update_email'
-  end
+  resource :user do
+    collection do
+      patch 'update_password'
+      patch 'update_info'
+      patch 'update_email'
+    end
+    
+    member do
+      get 'profile_page'
+    end
   end
   
   root :to => "posts#index"

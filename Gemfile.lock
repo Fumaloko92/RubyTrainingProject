@@ -68,6 +68,12 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (0.11.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+      mimemagic (>= 0.3.0)
     cloudinary (1.1.7)
       aws_cf_signer
       rest-client
@@ -149,6 +155,7 @@ GEM
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
     mime-types (2.99.2)
+    mimemagic (0.3.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -349,6 +356,7 @@ DEPENDENCIES
   better_errors
   byebug
   capybara
+  carrierwave
   cloudinary
   coffee-rails
   database_cleaner

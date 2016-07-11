@@ -1,6 +1,9 @@
-h1
-  = @post.title 
-p
+br
+div align="center"
+  = image_tag(@post.avatar.url, size: "300x600", class: "img-responsive") if @post.avatar && @post.avatar.url
+  h1
+    = @post.title 
+p 
   = @post.content 
 small
   = @post.created_at 
@@ -8,7 +11,10 @@ small
 h2 Comments
 
 - @comments.each do |comment|
-  = "Commented on " + comment.created_at.to_s
+  = "Commented on " + comment.created_at.to_s 
+  br
+  = image_tag(comment.user.avatar.url, size:"30x30") 
+  = " " + comment.user.name + " " + comment.user.surname 
   br
   h5
     = comment.title

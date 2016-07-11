@@ -28,6 +28,7 @@ gem "attachinary"
 gem "jquery-fileupload-rails"
 gem "coffee-rails"
 gem "friendly_id", "~> 5.1.0"
+gem 'carrierwave'
 
 # custom simple form for fixing this issue:
 # https://github.com/plataformatec/simple_form/issues/1341

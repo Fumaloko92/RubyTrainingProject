@@ -53,7 +53,8 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :id,
       :title, 
-      :content
+      :content,
+      :avatar
       )
   end
   

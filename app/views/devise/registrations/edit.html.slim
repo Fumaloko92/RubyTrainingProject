@@ -12,6 +12,9 @@ h3 Edit personal information
   = f.label :birthday
   = f.date_field :birthday, required: true
   br
+  = f.label :avatar
+  = f.file_field :avatar
+  br
   = f.submit "Submit new information"
   
 h3 Edit password

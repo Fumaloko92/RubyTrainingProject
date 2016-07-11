@@ -31,6 +31,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile_page
+    render 'show'  
+  end
+  
   private
 
   def password_change_params
@@ -46,7 +50,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(
     :name, 
     :surname,
-    :birthday
+    :birthday,
+    :avatar
     )
   end
   

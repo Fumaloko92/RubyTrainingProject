@@ -8,7 +8,8 @@ FactoryGirl.define do
   factory :user, :class => "User" do
     name "Giorgio"
     surname "Rossi"
-    birthday DateTime.new(1990,2,3) 
+    birthday DateTime.new(1990,2,3)
+    avatar "uploads/user/test.jpg" 
     email 
     password "12345678"
     password_confirmation "12345678"

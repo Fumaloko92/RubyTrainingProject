@@ -1,0 +1,7 @@
+br
+br
+= image_tag(current_user.avatar.url)
+br
+= current_user.name + " " + current_user.surname
+- if current_user == params[:id]
+  = "Email: " + current_user.email
