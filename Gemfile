@@ -29,6 +29,9 @@ gem "jquery-fileupload-rails"
 gem "coffee-rails"
 gem "friendly_id", "~> 5.1.0"
 gem 'carrierwave'
+gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
 # custom simple form for fixing this issue:
 # https://github.com/plataformatec/simple_form/issues/1341

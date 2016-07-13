@@ -2,40 +2,46 @@ h2 Edit profile
 
 h3 Edit personal information
 
-= form_for current_user, :url => { :action => "update_info", :controller => "users" }, method: "patch" do |f| 
-  = f.label :name 
-  = f.text_field :name, required: true
+= form_for current_user, :url => { :action => "update_info", :controller => "users" }, html: { class: "form-inline" }, method: "patch" do |f| 
+  div class="form-groups"
+    = f.label :name 
+    = f.text_field :name, required: true, class: "form-control"
+  div class="form-groups"
+    = f.label :surname
+    = f.text_field :surname, required: true, class: "form-control"
+  div class="form-groups"
+    = f.label :birthday
+    = f.date_field :birthday, required: true, class: "form-control"
+  div class="form-groups"
+    = f.label :avatar
+    = f.file_field :avatar, class: "form-control"
   br
-  = f.label :surname
-  = f.text_field :surname, required: true
-  br
-  = f.label :birthday
-  = f.date_field :birthday, required: true
-  br
-  = f.label :avatar
-  = f.file_field :avatar
-  br
-  = f.submit "Submit new information"
+  div class="form-actions"
+    = f.submit "Submit new information", class: "btn btn-md"
   
 h3 Edit password
-= form_for current_user, :url => { :action => "update_password", :controller => "users" }, method: "patch" do |f| 
-  = f.label :current_password
-  = f.password_field :current_password, required: true
+= form_for current_user, :url => { :action => "update_password", :controller => "users" }, html: { class: "form-inline" }, method: "patch" do |f| 
+  div class="form-groups"
+    = f.label :current_password
+    = f.password_field :current_password, required: true, class: "form-control"
+  div class="form-groups"
+    = f.label :new_password
+    = f.password_field :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), class: "form-control"
+  div class="form-groups"
+    = f.label :confirm_new_password
+    = f.password_field :password_confirmation, required: true, class: "form-control"
   br
-  = f.label :new_password
-  = f.password_field :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) 
-  br
-  = f.label :confirm_new_password
-  = f.password_field :password_confirmation, required: true 
-  br
-  = f.submit "Change password" 
+  div class="form-actions"
+    = f.submit "Change password", class: "btn btn-md"
   
 h3 Edit email
-= form_for current_user, :url => { :action => "update_email", :controller => "users" }, method: "patch" do |f|
-  = f.label :password
-  = f.password_field :current_password, required: true
+= form_for current_user, :url => { :action => "update_email", :controller => "users" }, html: { class: "form-inline" }, method: "patch" do |f|
+  div class="form-groups"
+    = f.label :password
+    = f.password_field :current_password, required: true, class: "form-control"
+  div class="form-groups"
+    = f.label :email
+    = f.text_field :email, required: true, value: current_user.email, class: "form-control"
   br
-  = f.label :email
-  = f.text_field :email, required: true, value: current_user.email
-  br
-  = f.submit "Change email"
+  div class="form-actions"
+    = f.submit "Change email", class: "btn btn-md"

@@ -1,7 +1,9 @@
 br
 br
-= image_tag(current_user.avatar.url)
-br
-= current_user.name + " " + current_user.surname
-- if current_user == params[:id]
-  = "Email: " + current_user.email
+div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"
+  = image_tag(current_user.avatar.url, :class => "img-responsive")
+div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"
+  h2
+    = current_user.name + " " + current_user.surname
+  - if current_user == params[:id]
+    = "Email: " + current_user.email

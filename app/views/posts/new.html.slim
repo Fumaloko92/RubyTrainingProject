@@ -9,14 +9,14 @@ h1 Add a new Post
 = form_for @post do |f| 
   p
     = f.label :title 
-  = f.text_field :title 
+  = f.text_field :title, class: "form-control" 
   p
     = f.label :content 
-  = f.text_area :content
+  = f.text_area :content, class: "form-control", rows:"20"
   p
     = f.label :avatar
-  = f.file_field :avatar
+  = f.file_field :avatar, class: "form-control"
   p
-  = f.submit "Add a New Post" 
+  = f.submit "Add a New Post", class: "btn btn-xl" 
 
 

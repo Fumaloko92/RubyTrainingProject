@@ -37,11 +37,11 @@ h2 Comments
   = form_for [@post, @comment] do |f|
     p
       = f.label :title
-    = f.text_field :title
+    = f.text_field :title, class: "form-control"
     p
       = f.label :content
-    = f.text_area :content
+    = f.text_area :content, class: "form-control"
     br
-    = f.submit "Add a New Comment" 
+    = f.submit "Add a New Comment", class:"btn btn-xs" 
 - else
   = link_to ("Login to comment"), new_user_session_path

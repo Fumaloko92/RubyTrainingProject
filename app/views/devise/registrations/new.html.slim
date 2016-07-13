@@ -1,20 +1,33 @@
 h2 Sign up
 
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| 
+= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-inline" } do |f| 
   = f.error_notification 
 
-  div class="form-inputs"
-    = f.input :name, required: true
-    = f.input :surname, required: true
-    = f.input :birthday, required: true, as: :date, start_year: Date.today.year, end_year: Date.today.year-150, order: [:day, :month, :year]
-    = f.file_field :avatar
-    = f.input :email, required: true, autofocus: true 
-    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) 
-    = f.input :password_confirmation, required: true 
-    
-  div.form-actions
+  div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12"  
+    = f.label :avatar
+    = f.file_field :avatar, input_html: { class: 'form-control' }
+    br
+  div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6"
+    = f.input :name, required: true, input_html: { class: 'form-control' }
+  div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6"
+    = f.input :surname, required: true, input_html: { class: 'form-control' }
+    br
+  div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" 
+    = f.input :birthday, required: true, as: :date, start_year: Date.today.year, end_year: Date.today.year-150, order: [:day, :month, :year], input_html: { class: 'form-control' }
+    br
+  div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12"  
+    = f.input :email, required: true, autofocus: true, input_html: { class: 'form-control' }
+    br
+  div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6"  
+    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control' }
+
+  div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6"  
+    = f.input :password_confirmation, required: true, input_html: { class: 'form-control' }
+    br
+
+  div class="form-actions col-xs-12 col-sm-12 col-md-12 col-lg-12" align="center"
     = f.button :submit, "Sign up" 
 
 
-
-= render "devise/shared/links" 
+div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" align="center"
+  = render "devise/shared/links" 
