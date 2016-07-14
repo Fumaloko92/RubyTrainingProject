@@ -14,13 +14,13 @@ html
             span class="sr-only" Toggle navigation            
             | Menu
             i class="fa fa-bars"
-          a class="navbar-brand page-scroll" href="#page-top" Homepage
+          = link_to "Homepage", posts_path, { :class => "navbar-brand page-scroll" }
         div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
           ul class="nav navbar-nav navbar-right"
             li class="hidden"
               a href="#page-top"
             li
-              = link_to "Homepage", posts_path
+              
             - if !current_user
               li
                 = link_to "Register", new_user_registration_path
