@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title= "Luca\'s Blog"
+    title EaZyGaming website
     = csrf_meta_tags
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload' 
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
@@ -26,6 +26,8 @@ html
                 = link_to "Register", new_user_registration_path
               li
                 = link_to "Log In", new_user_session_path
+              li
+                = link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path
             - else
               li
                 = link_to "Profile page", profile_page_user_path
