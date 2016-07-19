@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714095115) do
+ActiveRecord::Schema.define(version: 20160719001224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,45 @@ ActiveRecord::Schema.define(version: 20160714095115) do
     t.integer  "post_id",                 null: false
     t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string   "name",                      null: false
+    t.string   "producer",     default: ""
+    t.integer  "release_year"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "games_genres", id: false, force: :cascade do |t|
+    t.integer "game_id",  null: false
+    t.integer "genre_id", null: false
+  end
+
+  create_table "games_posts", id: false, force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "post_id", null: false
+  end
+
+  create_table "games_users", id: false, force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "user_id", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "platforms", force: :cascade do |t|
+    t.string  "name",                              null: false
+    t.string  "cpu_if_applicable",    default: ""
+    t.string  "ram_if_applicable",    default: ""
+    t.string  "video_if_applicable",  default: ""
+    t.string  "memory_if_applicable", default: ""
+    t.integer "game_id"
+    t.index ["game_id"], name: "index_platforms_on_game_id", using: :btree
   end
 
   create_table "posts", force: :cascade do |t|
@@ -59,4 +98,5 @@ ActiveRecord::Schema.define(version: 20160714095115) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "platforms", "games"
 end

@@ -14,7 +14,7 @@ html
             span class="sr-only" Toggle navigation            
             | Menu
             i class="fa fa-bars"
-          = link_to "Homepage", posts_path, { :class => "navbar-brand page-scroll" }
+          = link_to "Homepage", root_path, { :class => "navbar-brand page-scroll" }
         div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
           ul class="nav navbar-nav navbar-right"
             li class="hidden"
@@ -35,17 +35,17 @@ html
                 = link_to "Edit profile", edit_user_registration_path
               li
                 = link_to "Log Out", destroy_user_session_path
-         
-    header
+    - if current_page?(root_url)
+      header
+        div class="container"
+          div class="intro-text"
+            div class="intro-lead-in"
+              | Welcome to
+            div class="intro-heading"       
+              | EaZy Gaming Website
+    section id="content"        
       div class="container"
-        div class="intro-text"
-          div class="intro-lead-in"
-            | Welcome to
-          div class="intro-heading"       
-            | EaZy Gaming Website
-            
-    div class="container"
-      = yield
+        = yield
     
     footer
       div class="container"
